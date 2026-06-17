@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SPIDER_XD — A SPIDER CLAN OF DESTRUCTION ♻️♻️ </title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#050a10;
+    --card:#0a1520;
+    --border:#0ef;
+    --border2:#0e3a4a;
+    --accent:#00eeff;
+    --accent2:#00ff88;
+    --accent3:#ff3366;
+    --text:#e0f4ff;
+    --muted:#4a7a8a;
+    --glow:0 0 20px rgba(0,238,255,0.3);
+    --glow2:0 0 40px rgba(0,238,255,0.15);
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',system-ui,sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x:hidden;
+  }
+
+  /* Animated grid background */
+  body::before{
+    content:'';
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(0,238,255,0.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,238,255,0.03) 1px,transparent 1px);
+    background-size:40px 40px;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* Glowing orbs */
+  body::after{
+    content:'';
+    position:fixed;
+    width:600px;height:600px;
+    background:radial-gradient(circle,rgba(0,238,255,0.06) 0%,transparent 70%);
+    top:-200px;left:-200px;
+    z-index:0;pointer-events:none;
+    animation:orb 8s ease-in-out infinite alternate;
+  }
+  @keyframes orb{
+    0%{transform:translate(0,0);}
+    100%{transform:translate(100px,80px);}
+  }
+
+  .container{
+    position:relative;z-index:1;
+    width:100%;max-width:520px;
+    padding:20px 16px 40px;
+    display:flex;flex-direction:column;align-items:center;gap:24px;
+  }
+
+  /* Header */
+  .header{text-align:center;padding-top:20px;}
+  .logo-wrap{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:80px;height:80px;border-radius:50%;
+    background:linear-gradient(135deg,rgba(0,238,255,0.1),rgba(0,255,136,0.1));
+    border:2px solid var(--accent);
+    box-shadow:var(--glow);
+    margin-bottom:16px;
+    animation:pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 20px rgba(0,238,255,0.3);}
+    50%{box-shadow:0 0 40px rgba(0,238,255,0.6),0 0 80px rgba(0,238,255,0.2);}
+  }
+  .logo-wrap span{font-size:36px;}
+  .bot-name{
+    font-size:32px;font-weight:900;letter-spacing:3px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+    text-shadow:none;
+  }
+  .tagline{
+    font-size:13px;color:var(--muted);letter-spacing:2px;
+    text-transform:uppercase;margin-top:6px;
+  }
+
+  /* Stats bar */
+  .stats{
+    display:flex;gap:12px;width:100%;
+  }
+  .stat{
+    flex:1;background:var(--card);
+    border:1px solid var(--border2);border-radius:12px;
+    padding:12px;text-align:center;
+  }
+  .stat-val{
+    font-size:22px;font-weight:700;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .stat-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+  /* Card */
+  .card{
+    width:100%;background:var(--card);
+    border:1px solid var(--border2);border-radius:20px;
+    padding:28px 24px;
+    box-shadow:var(--glow2);
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  }
+
+  .card-title{
+    font-size:15px;font-weight:700;letter-spacing:1px;
+    color:var(--accent);margin-bottom:20px;text-align:center;
+  }
+
+  .input-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;display:block;}
+  .input{
+    width:100%;background:rgba(0,238,255,0.05);
+    border:1px solid var(--border2);border-radius:12px;
+    padding:14px 16px;color:var(--text);font-size:16px;
+    outline:none;transition:all 0.3s;letter-spacing:1px;
+  }
+  .input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,238,255,0.1);}
+  .input::placeholder{color:var(--muted);}
+
+  .btn{
+    width:100%;margin-top:16px;padding:16px;border:none;border-radius:12px;
+    background:linear-gradient(135deg,#00a8cc,#00eeff);
+    color:#000;font-size:15px;font-weight:800;letter-spacing:2px;
+    text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .btn:hover:not(:disabled){
+    transform:translateY(-2px);
+    box-shadow:0 8px 30px rgba(0,238,255,0.4);
+  }
+  .btn:disabled{opacity:0.6;cursor:not-allowed;}
+
+  /* Result */
+  .result{display:none;margin-top:20px;}
+  .result.show{display:block;}
+
+  .result-success{
+    background:rgba(0,255,136,0.05);
+    border:1px solid rgba(0,255,136,0.3);
+    border-radius:16px;padding:24px;text-align:center;
+  }
+  .result-error{
+    background:rgba(255,51,102,0.05);
+    border:1px solid rgba(255,51,102,0.3);
+    border-radius:16px;padding:20px;text-align:center;
+  }
+  .result-connected{
+    background:rgba(0,238,255,0.05);
+    border:1px solid rgba(0,238,255,0.3);
+    border-radius:16px;padding:24px;text-align:center;
+  }
+
+  .code-display{
+    font-size:38px;font-weight:900;letter-spacing:8px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin:16px 0;cursor:pointer;
+    transition:all 0.3s;
+    padding:12px;border-radius:12px;
+    border:1px dashed rgba(0,238,255,0.3);
+  }
+  .code-display:hover{background-color:rgba(0,238,255,0.05);}
+
+  .code-hint{font-size:12px;color:var(--muted);margin-bottom:16px;}
+  .steps{text-align:left;margin-top:16px;}
+  .step{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:10px 0;border-bottom:1px solid var(--border2);
+    font-size:13px;color:var(--text);line-height:1.5;
+  }
+  .step:last-child{border-bottom:none;}
+  .step-num{
+    min-width:24px;height:24px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#000;font-size:11px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;margin-top:1px;
+  }
+
+  /* Timer */
+  .timer-bar{
+    height:4px;background:rgba(0,238,255,0.1);
+    border-radius:2px;margin-top:16px;overflow:hidden;
+  }
+  .timer-fill{
+    height:100%;border-radius:2px;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    transition:width 1s linear,background 1s;
+  }
+  .timer-txt{font-size:12px;color:var(--muted);margin-top:6px;text-align:center;}
+
+  /* Connected badge */
+  .connected-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);
+    border-radius:20px;padding:8px 16px;
+    font-size:13px;font-weight:700;color:var(--accent2);
+    margin-bottom:12px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:blink 1s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+  /* Features */
+  .features{
+    width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  }
+  .feat{
+    background:var(--card);border:1px solid var(--border2);
+    border-radius:12px;padding:14px 12px;
+    font-size:12px;color:var(--muted);
+    display:flex;align-items:center;gap:10px;
+  }
+  .feat-icon{font-size:20px;}
+  .feat strong{display:block;color:var(--text);font-size:13px;margin-bottom:2px;}
+
+  /* Spinner */
+  .spin{
+    width:18px;height:18px;border:2px solid rgba(0,0,0,0.3);
+    border-top-color:#000;border-radius:50%;
+    animation:spin 0.8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .footer{
+    position:relative;z-index:1;
+    text-align:center;padding:16px;
+    font-size:11px;color:var(--muted);letter-spacing:1px;
+  }
+  .footer span{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo-wrap"><span>⚡</span></div>
+    <div class="bot-name">SPIDER_XD</div>
+    <div class="tagline">A SPIDER CLAN OF DESTRUCTION ♻️♻️  🌍</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val" id="stat-bots">—</div>
+      <div class="stat-lbl">Active Bots</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" id="stat-total">—</div>
+      <div class="stat-lbl">Total Paired</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" id="stat-uptime">—</div>
+      <div class="stat-lbl">Uptime</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ CONNECT YOUR BOT</div>
+    <label class="input-label" for="phone">WhatsApp Number (with country code)</label>
+    <input type="tel" id="phone" class="input" placeholder="e.g. 263788114185" maxlength="20"/>
+    <button class="btn" id="pairBtn" onclick="getCode()">
+      <span>⚡</span><span>GENERATE PAIRING CODE</span>
+    </button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <div class="features">
+    <div class="feat"><div class="feat-icon">🧠</div><div><strong>GPT-4 AI</strong>Powered chatbot</div></div>
+    <div class="feat"><div class="feat-icon">🎵</div><div><strong>Music DL</strong>Any song instantly</div></div>
+    <div class="feat"><div class="feat-icon">🛡️</div><div><strong>Protection</strong>Anti-spam/link/call</div></div>
+    <div class="feat"><div class="feat-icon">⚡</div><div><strong>80 Commands</strong>Built different</div></div>
+  </div>
+
+</div>
+
+<div class="footer">Powered by <span>SPIDER_XD</span> — <span>scotty©</span></div>
+
+<script>
+const TOTAL = 300;
+let phone = '', code = '', tiv = null, piv = null, secs = TOTAL;
+
+// Load stats
+async function loadStats() {
+  try {
+    const r = await fetch('/ping');
+    const d = await r.json();
+    document.getElementById('stat-bots').textContent   = d.bots ?? '—';
+    document.getElementById('stat-total').textContent  = d.paired ?? '—';
+    const u = d.uptime || 0;
+    const h = Math.floor(u/3600), m = Math.floor((u%3600)/60);
+    document.getElementById('stat-uptime').textContent = `${h}h ${m}m`;
+  } catch {}
+}
+loadStats();
+setInterval(loadStats, 30000);
+
+document.getElementById('phone').addEventListener('keydown', e => { if (e.key === 'Enter') getCode(); });
+
+async function getCode() {
+  const input = document.getElementById('phone');
+  phone = input.value.trim().replace(/[^0-9]/g, '');
+  if (!phone || phone.length < 7 || phone.length > 15) {
+    showError('Enter a valid international number e.g. 263788114185');
+    return;
+  }
+  const btn = document.getElementById('pairBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin"></div><span>CONNECTING...</span>';
+  clearResult();
+
+  try {
+    const res = await fetch('/pair', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone })
+    });
+    const d = await res.json();
+    if (!res.ok || d.error) { showError(d.error || 'Something went wrong.'); }
+    else if (d.status === 'already_connected') { showConnected(); }
+    else { code = d.code; showCode(code, phone); }
+  } catch { showError('Cannot reach server. Please try again.'); }
+  finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span>⚡</span><span>GENERATE PAIRING CODE</span>';
+  }
+}
+
+function showCode(c, p) {
+  const box = document.getElementById('result');
+  box.innerHTML = `
+    <div class="result-success">
+      <div style="font-size:13px;color:#00ff88;font-weight:700;margin-bottom:8px;">✅ YOUR PAIRING CODE</div>
+      <div class="code-display" id="codeVal" onclick="cpCode()" title="Click to copy">${c}</div>
+      <div class="code-hint">👆 Tap code to copy • Expires in <span id="tcnt">5:00</span></div>
+      <div class="timer-bar"><div class="timer-fill" id="tfill" style="width:100%"></div></div>
+      <div class="timer-txt" id="ttxt"></div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div>Open <strong>WhatsApp</strong> on your phone</div></div>
+        <div class="step"><div class="step-num">2</div><div>Tap <strong>⋮ Menu → Linked Devices → Link a Device</strong></div></div>
+        <div class="step"><div class="step-num">3</div><div>Tap <strong>"Link with phone number instead"</strong></div></div>
+        <div class="step"><div class="step-num">4</div><div>Enter the code above ⬆️</div></div>
+      </div>
+    </div>`;
+  box.className = 'result show';
+  startTimer();
+  startPoll(p);
+}
+
+function showConnected() {
+  clearTimers();
+  const box = document.getElementById('result');
+  box.innerHTML = `
+    <div class="result-connected">
+      <div class="connected-badge"><div class="dot"></div> BOT CONNECTED & ACTIVE</div>
+      <div style="font-size:13px;color:#e0f4ff;margin-bottom:8px;">🎉 SPIDER_XD is now LIVE on your WhatsApp!</div>
+      <div style="font-size:12px;color:#4a7a8a;">Check your WhatsApp — a welcome message was sent.<br/>Type <strong style="color:#00eeff;">.menu</strong> to see all 80 commands.</div>
+    </div>`;
+  box.className = 'result show';
+  loadStats();
+}
+
+function showError(msg) {
+  const box = document.getElementById('result');
+  box.innerHTML = `<div class="result-error"><div style="font-size:13px;color:#ff3366;font-weight:700;">❌ ERROR</div><div style="font-size:13px;color:#e0f4ff;margin-top:8px;">${msg}</div></div>`;
+  box.className = 'result show';
+}
+
+function clearResult() {
+  const box = document.getElementById('result');
+  box.className = 'result';
+  box.innerHTML = '';
+}
+
+function cpCode() {
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => {
+    const el = document.getElementById('codeVal');
+    if (el) { el.textContent = '✅ COPIED!'; setTimeout(() => el.textContent = code, 1500); }
+  });
+}
+
+function startTimer() {
+  secs = TOTAL;
+  if (tiv) clearInterval(tiv);
+  updateTimer();
+  tiv = setInterval(() => {
+    secs--;
+    updateTimer();
+    if (secs <= 0) {
+      clearInterval(tiv);
+      const ttxt = document.getElementById('ttxt');
+      if (ttxt) ttxt.innerHTML = '<span style="color:#ff3366;">⚠️ Expired — <a onclick="location.reload()" style="color:#00eeff;cursor:pointer;">Try again</a></span>';
+    }
+  }, 1000);
+}
+
+function updateTimer() {
+  const m = Math.floor(secs/60), s = secs%60;
+  const cnt = document.getElementById('tcnt');
+  const fill = document.getElementById('tfill');
+  if (cnt) cnt.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  if (fill) {
+    fill.style.width = (secs/TOTAL*100) + '%';
+    fill.style.background = secs > 60
+      ? 'linear-gradient(90deg,#00ff88,#00eeff)'
+      : secs > 30 ? '#f39c12' : '#ff3366';
+  }
+}
+
+function startPoll(p) {
+  if (piv) clearInterval(piv);
+  let n = 0;
+  piv = setInterval(async () => {
+    n++; if (n > 120) { clearInterval(piv); return; }
+    try {
+      const r = await fetch('/status/' + p);
+      const d = await r.json();
+      if (d.status === 'connected') { clearTimers(); showConnected(); }
+    } catch {}
+  }, 3000);
+}
+
+function clearTimers() {
+  if (tiv) { clearInterval(tiv); tiv = null; }
+  if (piv) { clearInterval(piv); piv = null; }
+}
+</script>
+</body>
+</html>
